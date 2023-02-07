@@ -20,7 +20,7 @@ export const Shop = () => {
     return (
         <>
             <ProductsSearch/>
-            {products ? <ProductsList products = {products} /> : Preloader}  
+            {products ? <ProductsList products={products} /> : <Preloader />}
         </>
      );
 };
