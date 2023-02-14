@@ -1,5 +1,5 @@
 import styles from './index.module.css'
-import cartIcon from '../../assets/cart_icon.png';
+import {AddToCardButton} from '../addToCardButton'
 export  const ProductItem = ({image,name,description,price, category}) => {
     return (
         <div className={styles.wrapper}>
@@ -10,10 +10,8 @@ export  const ProductItem = ({image,name,description,price, category}) => {
             </div>
             <div className={styles.description} >{description}</div>
             <div className={styles.priceWrapper}>
-                <p className={styles.price}>{price}</p>
-                <button className={styles.addToCartButton}>
-                    <img src={cartIcon} alt='cart' />
-                </button>
+                <p className={styles.price}>{price}руб</p>
+                <AddToCardButton/>
             </div>
         </div>
     )
