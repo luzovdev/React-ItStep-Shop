@@ -11,7 +11,7 @@ export const contactsSlice = createSlice({
     name: 'contacts',
     initialState: startState,
     reducers: {
-       changeCity: (state,{payload}) => {
+       changeCity: (state, {payload}) => {
             state.city = payload;
        }
     }

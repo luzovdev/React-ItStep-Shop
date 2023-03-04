@@ -1,12 +1,13 @@
 import React from "react";
-import { ProductsSearch } from "../productSearch/productSearch";
-import { FilterProducts } from "../filterProducts";
-import styles from './index.module.css'
+import { ShopFilter } from "../shopFilter";
+import { SearchProductInput } from "../searchProductInput";
+import styles from "./index.module.css";
+
 export const ShopMainFilter = () => {
-    return (
-        <div className={styles.searchWrapper}>
-            <ProductsSearch/>
-            <FilterProducts/>
-        </div>
-    )
-}
+  return (
+    <div className={styles.searchWrapper}>
+      <SearchProductInput />
+      <ShopFilter />
+    </div>
+  );
+};

@@ -1,25 +1,30 @@
-import React, {useEffect, useState} from "react";
-import {ProductsList} from '../components/productList/productsList';
-import {fetchProducts} from '../utils/fetchProducts'
-import { Preloader } from "../components/preloader";
+import React, { useEffect } from "react";
+import { ShopProductsList } from "../components/shopProductsList";
 import { ShopMainFilter } from "../components/shopMainFilter";
+import { Preloader } from "../components/preloader";
+import { useSelector, useDispatch } from "react-redux";
+import { selectGoods, selectIsLoading, selectError } from '../redux/slices/products';
+import { getProducts } from "../redux/actions/products";
+
 
 export const Shop = () => {
+  const dispatch = useDispatch();
+  const products = useSelector(selectGoods);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
-    const [products,setProducts] = useState(null);
-    
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
 
-    useEffect(() => {
-        fetchProducts()
-        .then(({products : goods}) => {
-            setProducts(goods);
-        })
-    },[]);
+  const shouldShowProducts = products && !isLoading;
 
-    return (
-        <>
-            <ShopMainFilter/>
-            {products ? <ProductsList products={products} /> : <Preloader />}
-        </>
-     );
+  return (
+    <>
+      <ShopMainFilter />
+      {shouldShowProducts && <ShopProductsList products={products} /> }
+      {isLoading && <Preloader />}
+      {error && <h1>{error}</h1>}
+    </>
+  );
 };
